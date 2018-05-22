@@ -3,4 +3,4 @@ Revision history for DBIx-Class-Helper-ResultSet-WindowFunctions:
 {{$NEXT}}
 
 v0.1.0    2018-05-22 23:17:53+01:00 Europe/London
-- Initial release.
+  - Initial release.
