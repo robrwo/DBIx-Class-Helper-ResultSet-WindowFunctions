@@ -1,9 +1,52 @@
 package DBIx::Class::Helper::ResultSet::WindowFunctions;
 
+# ABSTRACT: Add support for window functions to DBIx::Class
+
 use strict;
 use warnings;
 
 use parent 'DBIx::Class::ResultSet';
+
+our $VERSION = 'v0.1.0';
+
+=head1 SYNOPSIS
+
+In a resultset:
+
+  package MyApp::Schema::ResultSet::Wobbles;
+
+  use base qw/DBIx::Class::ResultSet/;
+
+  __PACKAGE__->load_components( qw/
+      Helper::ResultSet::WindowFunctions
+  /);
+
+Using the resultset:
+
+  my $rs = $schema->resultset('Wobbles')->search_rs(
+      undef.
+      '+select' => {
+          avg   => 'fingers',
+          -over => {
+              partition_by => 'hats',
+              order_by     => 'age',
+          },
+      },
+      '+as' => 'avg',
+  );
+
+=head1 DESCRIPTION
+
+This helper adds rudimentary support for window functions to
+L<DBIx::Class> resultsets.
+
+=head1 CAVEATS
+
+This module is experimental.
+
+Not all databases support window functions.
+
+=cut
 
 sub _resolved_attrs {
     my $rs    = $_[0];
@@ -56,5 +99,11 @@ sub _resolved_attrs {
 
     return $rs->next::method;
 }
+
+=head1 SEE ALSO
+
+L<DBIx::Class>
+
+=cut
 
 1;
