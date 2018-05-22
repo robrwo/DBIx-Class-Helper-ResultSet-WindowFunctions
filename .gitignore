@@ -1,0 +1,4 @@
+DBIx-Class-Helper-ResultSet-WindowFunctions-*/
+DBIx-Class-Helper-ResultSet-WindowFunctions-*.tar.gz
+.build/
+cpanfile.snapshot
