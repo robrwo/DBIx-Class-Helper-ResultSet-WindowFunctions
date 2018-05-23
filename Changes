@@ -1,6 +1,8 @@
 Revision history for DBIx-Class-Helper-ResultSet-WindowFunctions:
 
 {{$NEXT}}
+  [Tests]
+  - Added redundant dependency on SQL::Abstract for diagnostics.
 
 v0.1.1    2018-05-23 01:03:53+01:00 Europe/London
   [Tests]
