@@ -1,6 +1,9 @@
 Revision history for DBIx-Class-Helper-ResultSet-WindowFunctions:
 
 {{$NEXT}}
+  [Documentation]
+  - Removed BUGS section from POD and README (dzil).
+
   [Tests]
   - Added missing test prerequisites.
 
