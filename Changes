@@ -4,6 +4,11 @@ Revision history for DBIx-Class-Helper-ResultSet-WindowFunctions:
   [Documentation]
   - Fixed a broken Changes file due to a toolchain hiccup.
 
+  [Tests]
+  - Tests use Test::Roo::DataDriven.
+
+  - Removed dependency on Test::Most.
+
 v0.1.1    2018-05-23 01:20:21+01:00 Europe/London
   [Tests]
   - Added redundant dependency on SQL::Abstract for diagnostics.
