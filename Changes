@@ -1,6 +1,8 @@
 Revision history for DBIx-Class-Helper-ResultSet-WindowFunctions:
 
 {{$NEXT}}
+  [Toolchain]
+  - Added keywords to distribution metadata.
 
 v0.1.2    2018-05-24 21:19:08+01:00 Europe/London
   [Documentation]
