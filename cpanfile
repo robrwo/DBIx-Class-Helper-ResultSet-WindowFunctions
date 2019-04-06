@@ -1,6 +1,6 @@
 requires "DBIx::Class::ResultSet" => "0";
 requires "parent" => "0";
-requires "perl" => "v5.8.0";
+requires "perl" => "v5.10.0";
 
 on 'test' => sub {
   requires "Class::Load" => "0";

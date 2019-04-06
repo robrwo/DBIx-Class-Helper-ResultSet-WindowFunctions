@@ -1,6 +1,10 @@
 Revision history for DBIx-Class-Helper-ResultSet-WindowFunctions:
 
 {{$NEXT}}
+  [Incompatible Changes]
+  - Incremented minimum Perl version to v5.10, since the $VERSION string
+    was never handled properly.
+
   [Documentation]
   - Added INSTALL file to the distribution.
 
