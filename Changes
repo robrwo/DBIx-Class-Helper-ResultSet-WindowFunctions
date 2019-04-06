@@ -6,6 +6,9 @@ Revision history for DBIx-Class-Helper-ResultSet-WindowFunctions:
 
   - Updated Copyright year.
 
+  [Tests]
+  - Added minimum version for prereq of SQL::Abstract::Test.
+
   [Toolchain]
   - Added keywords to distribution metadata.
 
