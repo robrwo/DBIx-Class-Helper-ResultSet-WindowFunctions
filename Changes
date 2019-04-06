@@ -4,6 +4,8 @@ Revision history for DBIx-Class-Helper-ResultSet-WindowFunctions:
   [Documentation]
   - Added INSTALL file to the distribution.
 
+  - Updated Copyright year.
+
   [Toolchain]
   - Added keywords to distribution metadata.
 
