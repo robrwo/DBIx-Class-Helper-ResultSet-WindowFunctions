@@ -1,6 +1,8 @@
 Revision history for DBIx-Class-Helper-ResultSet-WindowFunctions:
 
 {{$NEXT}}
+
+v0.2.1    2019-08-30 18:25:22+01:00 Europe/London
   [Documentation]
   - Fix typo in SYNOPSIS.
 

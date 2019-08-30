@@ -9,7 +9,7 @@ use warnings;
 
 use parent 'DBIx::Class::ResultSet';
 
-our $VERSION = 'v0.2.1';
+our $VERSION = 'v0.2.2';
 
 =head1 SYNOPSIS
 
