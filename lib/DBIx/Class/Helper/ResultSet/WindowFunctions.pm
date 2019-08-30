@@ -26,7 +26,8 @@ In a resultset:
 Using the resultset:
 
   my $rs = $schema->resultset('Wobbles')->search_rs(
-      undef.
+    undef,
+    {
       '+select' => {
           avg   => 'fingers',
           -over => {
@@ -35,6 +36,7 @@ Using the resultset:
           },
       },
       '+as' => 'avg',
+    }
   );
 
 =head1 DESCRIPTION

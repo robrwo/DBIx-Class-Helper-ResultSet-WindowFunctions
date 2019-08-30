@@ -24,7 +24,8 @@ Using the resultset:
 
 ```perl
 my $rs = $schema->resultset('Wobbles')->search_rs(
-    undef.
+  undef,
+  {
     '+select' => {
         avg   => 'fingers',
         -over => {
@@ -33,6 +34,7 @@ my $rs = $schema->resultset('Wobbles')->search_rs(
         },
     },
     '+as' => 'avg',
+  }
 );
 ```
 
