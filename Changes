@@ -7,6 +7,9 @@ Revision history for {{$dist->name}}:
   - DBIx::Class::Helper::ResultSet::WindowFunctions is a simple subclass
     added for backwards compatability.
 
+  [Enhancements]
+  - Use Ref::Util for checking reference types.
+
 v0.2.1    2019-08-30 18:25:22+01:00 Europe/London
   [Documentation]
   - Fix typo in SYNOPSIS.

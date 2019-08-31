@@ -9,6 +9,12 @@ use warnings;
 
 use parent 'DBIx::Class::ResultSet';
 
+use Ref::Util qw/ is_plain_arrayref is_plain_hashref /;
+
+# RECOMMEND PREREQ: Ref::Util::XS
+
+use namespace::clean;
+
 our $VERSION = 'v0.3.0';
 
 =head1 SYNOPSIS
@@ -63,17 +69,17 @@ sub _resolved_attrs {
         my $sel = $attrs->{$attr} or next;
         my @sel;
 
-        foreach my $col ( @{ ref $sel eq 'ARRAY' ? $sel : [$sel] } ) {
+        foreach my $col ( @{ is_plain_arrayref($sel) ? $sel : [$sel] } ) {
 
             push @sel, $col;
 
-            next unless ref $col eq 'HASH';
+            next unless is_plain_hashref($col);
 
             my $as = delete $col->{'-as'};
             my $over = delete $col->{'-over'} or next;
 
             $rs->throw_exception('-over must be a hashref')
-              unless ref $over eq 'HASH';
+              unless is_plain_hashref($over);
 
             my ( $sql, @bind ) = $sqla->_recurse_fields($col);
 
