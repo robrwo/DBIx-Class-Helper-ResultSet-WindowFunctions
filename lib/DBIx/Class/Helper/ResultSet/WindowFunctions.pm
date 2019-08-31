@@ -9,7 +9,7 @@ use warnings;
 
 use parent 'DBIx::Class::Helper::WindowFunctions';
 
-our $VERSION = 'v0.3.0';
+our $VERSION = 'v0.3.1';
 
 =head1 DESCRIPTION
 

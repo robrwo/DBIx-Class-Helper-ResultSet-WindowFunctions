@@ -15,7 +15,7 @@ use Ref::Util qw/ is_plain_arrayref is_plain_hashref /;
 
 use namespace::clean;
 
-our $VERSION = 'v0.3.0';
+our $VERSION = 'v0.3.1';
 
 =head1 SYNOPSIS
 
