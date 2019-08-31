@@ -1,6 +1,11 @@
-Revision history for DBIx-Class-Helper-ResultSet-WindowFunctions:
+Revision history for {{$dist->name}}:
 
 {{$NEXT}}
+  [Important Changes]
+  - Renamed to DBIx::Class::Helper::WindowFunctions.
+
+  - DBIx::Class::Helper::ResultSet::WindowFunctions is a simple subclass
+    added for backwards compatability.
 
 v0.2.1    2019-08-30 18:25:22+01:00 Europe/London
   [Documentation]

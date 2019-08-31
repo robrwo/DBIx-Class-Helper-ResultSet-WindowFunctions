@@ -1,10 +1,10 @@
 # NAME
 
-DBIx::Class::Helper::ResultSet::WindowFunctions - Add support for window functions to DBIx::Class
+DBIx::Class::Helper::WindowFunctions - Add support for window functions to DBIx::Class
 
 # VERSION
 
-version v0.2.1
+version v0.3.0
 
 # SYNOPSIS
 
@@ -16,7 +16,7 @@ package MyApp::Schema::ResultSet::Wobbles;
 use base qw/DBIx::Class::ResultSet/;
 
 __PACKAGE__->load_components( qw/
-    Helper::ResultSet::WindowFunctions
+    Helper::WindowFunctions
 /);
 ```
 
