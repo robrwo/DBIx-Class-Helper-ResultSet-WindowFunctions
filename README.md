@@ -4,7 +4,7 @@ DBIx::Class::Helper::WindowFunctions - Add support for window functions to DBIx:
 
 # VERSION
 
-version v0.3.0
+version v0.3.1
 
 # SYNOPSIS
 
