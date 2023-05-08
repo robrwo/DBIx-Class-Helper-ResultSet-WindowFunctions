@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}:
 
 {{$NEXT}}
+  [Incompatible Changes]
+  - Upgraded the minimum Perl version to v5.14.
+
   [Documentation]
   - Fixed encoding of links in README.
 

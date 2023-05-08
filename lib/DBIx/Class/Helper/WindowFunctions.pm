@@ -2,9 +2,7 @@ package DBIx::Class::Helper::WindowFunctions;
 
 # ABSTRACT: Add support for window functions to DBIx::Class
 
-use v5.10;
-
-use strict;
+use v5.14;
 use warnings;
 
 use parent 'DBIx::Class::ResultSet';
