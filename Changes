@@ -5,6 +5,8 @@ Revision history for {{$dist->name}}:
   - Upgraded the minimum Perl version to v5.14.
 
   [Documentation]
+  - Documented support policy for older Perls.
+
   - Fixed encoding of links in README.
 
   - Bumped copyright year.

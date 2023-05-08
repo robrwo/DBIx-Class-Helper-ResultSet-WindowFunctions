@@ -49,6 +49,16 @@ This module is experimental.
 
 Not all databases support window functions.
 
+# SUPPORT FOR OLDER PERL VERSIONS
+
+Since v0.4.0, the this module requires Perl v5.14 or later.
+
+Future releases may only support Perl versions released in the last ten years.
+
+If you need this module on Perl v5.10, please use one of the v0.3.x
+versions of this module.  Significant bug or security fixes may be
+backported to those versions.
+
 # SEE ALSO
 
 [DBIx::Class](https://metacpan.org/pod/DBIx%3A%3AClass)
