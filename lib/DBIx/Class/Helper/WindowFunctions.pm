@@ -13,7 +13,7 @@ use Ref::Util qw/ is_plain_arrayref is_plain_hashref /;
 
 use namespace::clean;
 
-our $VERSION = 'v0.3.1';
+our $VERSION = 'v0.4.0';
 
 =head1 SYNOPSIS
 
