@@ -41,7 +41,7 @@ my $rs = $schema->resultset('Wobbles')->search_rs(
 # DESCRIPTION
 
 This helper adds rudimentary support for window functions to
-[DBIx::Class](https://metacpan.org/pod/DBIx::Class) resultsets.
+[DBIx::Class](https://metacpan.org/pod/DBIx%3A%3AClass) resultsets.
 
 # CAVEATS
 
@@ -51,7 +51,7 @@ Not all databases support window functions.
 
 # SEE ALSO
 
-[DBIx::Class](https://metacpan.org/pod/DBIx::Class)
+[DBIx::Class](https://metacpan.org/pod/DBIx%3A%3AClass)
 
 # SOURCE
 
