@@ -11,6 +11,9 @@ Revision history for {{$dist->name}}:
 
   - Bumped copyright year.
 
+  [Other]
+  - Sign distribution.
+
 v0.3.0    2019-08-31 23:17:38+01:00 Europe/London
   [Important Changes]
   - Renamed to DBIx::Class::Helper::WindowFunctions.
