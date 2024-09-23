@@ -6,6 +6,7 @@ requires "Ref::Util" => "0";
 requires "namespace::clean" => "0";
 requires "parent" => "0";
 requires "perl" => "v5.14.0";
+requires "warnings" => "0";
 recommends "Ref::Util::XS" => "0";
 
 on 'test' => sub {
@@ -21,6 +22,8 @@ on 'test' => sub {
   requires "Test::More" => "0";
   requires "Test::Roo::DataDriven" => "0";
   requires "base" => "0";
+  requires "lib" => "0";
+  requires "strict" => "0";
 };
 
 on 'test' => sub {
