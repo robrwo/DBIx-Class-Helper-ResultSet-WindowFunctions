@@ -4,6 +4,9 @@ Revision history for {{$dist->name}}:
   [Incompatible Changes]
   - Removed deprecated DBIx::Class::Helper::ResultSet::WindowFunctions.
 
+  [Documentation]
+  - Updated copyright year.
+
   [Tests]
   - Added redundant prerequisite for tests.
 

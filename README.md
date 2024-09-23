@@ -87,7 +87,7 @@ Peter Rabbitson <ribasushi@leporine.io>
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2018-2023 by Robert Rothenberg.
+This software is Copyright (c) 2018-2024 by Robert Rothenberg.
 
 This is free software, licensed under:
 
