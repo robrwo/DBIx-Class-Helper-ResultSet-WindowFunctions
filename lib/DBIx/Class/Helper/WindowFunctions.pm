@@ -33,8 +33,9 @@ Using the resultset:
     undef,
     {
       '+select' => {
-          avg   => 'fingers',
-          -over => {
+          avg     => 'fingers',
+          -filter => { hats => { '>', 1 } },
+          -over   => {
               partition_by => 'hats',
               order_by     => 'age',
           },
@@ -79,12 +80,21 @@ sub _resolved_attrs {
             $rs->throw_exception('-over must be a hashref')
               unless is_plain_hashref($over);
 
+            my $filter = delete $col->{'-filter'};
+
             my ( $sql, @bind ) = $sqla->_recurse_fields($col);
 
             my ( $part_sql, @part_bind ) =
               $sqla->_recurse_fields( $over->{partition_by} );
             if ($part_sql) {
                 $part_sql = $sqla->_sqlcase('partition by ') . $part_sql;
+            }
+
+            my @filter_bind;
+            if ( defined $filter ) {
+                @filter_bind = $sqla->_recurse_where($filter);
+                my $clause = shift @filter_bind;
+                $sql .= $sqla->_sqlcase(' filter (where ') . $clause . ')';
             }
 
             my ( $order_sql, @order_bind ) =
@@ -95,7 +105,7 @@ sub _resolved_attrs {
                 $sql .= $sqla->_sqlcase(' as ') . $sqla->_quote($as);
             }
 
-            push @bind, @part_bind, @order_bind;
+            push @bind, @part_bind, @filter_bind, @order_bind;
 
             $sel[-1] = \[ $sql, @bind ];
 
