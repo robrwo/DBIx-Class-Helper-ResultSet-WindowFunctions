@@ -75,39 +75,57 @@ sub _resolved_attrs {
             next unless is_plain_hashref($col);
 
             my $as = delete $col->{'-as'};
-            my $over = delete $col->{'-over'} or next;
-
-            $rs->throw_exception('-over must be a hashref')
-              unless is_plain_hashref($over);
-
+            my $over = delete $col->{'-over'};
             my $filter = delete $col->{'-filter'};
+
+            next unless $over || $filter;
 
             my ( $sql, @bind ) = $sqla->_recurse_fields($col);
 
-            my ( $part_sql, @part_bind ) =
-              $sqla->_recurse_fields( $over->{partition_by} );
-            if ($part_sql) {
-                $part_sql = $sqla->_sqlcase('partition by ') . $part_sql;
-            }
+            if ($over) {
 
-            my @filter_bind;
-            if ( defined $filter ) {
+                $rs->throw_exception('-over must be a hashref')
+                  unless is_plain_hashref($over);
+
+                my ( $part_sql, @part_bind ) =
+                  $sqla->_recurse_fields( $over->{partition_by} );
+                if ($part_sql) {
+                    $part_sql = $sqla->_sqlcase('partition by ') . $part_sql;
+                }
+
+                my @filter_bind;
+                if ( defined $filter ) {
+                    $rs->throw_exception('-filter must be an arrayref or hashref')
+                      unless is_plain_arrayref($filter)
+                      or is_plain_hashref($filter);
+                    @filter_bind = $sqla->_recurse_where($filter);
+                    my $clause = shift @filter_bind;
+                    $sql .= $sqla->_sqlcase(' filter (where ') . $clause . ')';
+                }
+
+                my ( $order_sql, @order_bind ) =
+                  $sqla->_order_by( $over->{order_by} );
+
+                $sql .= $sqla->_sqlcase(' over (') . $part_sql . $order_sql . ')';
+                if ($as) {
+                    $sql .= $sqla->_sqlcase(' as ') . $sqla->_quote($as);
+                }
+
+                push @bind, @part_bind, @filter_bind, @order_bind;
+
+            }
+            else {
+
                 $rs->throw_exception('-filter must be an arrayref or hashref')
-                    unless is_plain_arrayref($filter) or is_plain_hashref($filter);
-                @filter_bind = $sqla->_recurse_where($filter);
-                my $clause = shift @filter_bind;
+                  unless is_plain_arrayref($filter)
+                  or is_plain_hashref($filter);
+                my @filter_bind = $sqla->_recurse_where($filter);
+                my $clause      = shift @filter_bind;
                 $sql .= $sqla->_sqlcase(' filter (where ') . $clause . ')';
+
+                push @bind, @filter_bind;
+
             }
-
-            my ( $order_sql, @order_bind ) =
-              $sqla->_order_by( $over->{order_by} );
-
-            $sql .= $sqla->_sqlcase(' over (') . $part_sql . $order_sql . ')';
-            if ($as) {
-                $sql .= $sqla->_sqlcase(' as ') . $sqla->_quote($as);
-            }
-
-            push @bind, @part_bind, @filter_bind, @order_bind;
 
             $sel[-1] = \[ $sql, @bind ];
 
