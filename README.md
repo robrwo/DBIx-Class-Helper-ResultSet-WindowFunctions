@@ -27,8 +27,9 @@ my $rs = $schema->resultset('Wobbles')->search_rs(
   undef,
   {
     '+select' => {
-        avg   => 'fingers',
-        -over => {
+        avg     => 'fingers',
+        -filter => { hats => { '>', 1 } },
+        -over   => {
             partition_by => 'hats',
             order_by     => 'age',
         },
