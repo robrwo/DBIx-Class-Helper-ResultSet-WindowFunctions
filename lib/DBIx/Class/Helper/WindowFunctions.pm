@@ -92,6 +92,8 @@ sub _resolved_attrs {
 
             my @filter_bind;
             if ( defined $filter ) {
+                $rs->throw_exception('-filter must be an arrayref or hashref')
+                    unless is_plain_arrayref($filter) or is_plain_hashref($filter);
                 @filter_bind = $sqla->_recurse_where($filter);
                 my $clause = shift @filter_bind;
                 $sql .= $sqla->_sqlcase(' filter (where ') . $clause . ')';
