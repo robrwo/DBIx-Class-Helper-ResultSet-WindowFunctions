@@ -1,6 +1,6 @@
 package DBIx::Class::Helper::WindowFunctions;
 
-# ABSTRACT: Add support for window functions to DBIx::Class
+# ABSTRACT: Add support for window functions and aggregate filters to DBIx::Class
 
 use v5.14;
 use warnings;
@@ -46,8 +46,41 @@ Using the resultset:
 
 =head1 DESCRIPTION
 
-This helper adds rudimentary support for window functions to
+This helper adds rudimentary support for window functions and aggregate filters to
 L<DBIx::Class> resultsets.
+
+It adds the following keys to the resultset attributes:
+
+=head2 -filter
+
+This is used for filtering aggregate functions or window functions, e.g. the following clause
+
+  '+select' => {
+      count     => \ 1,
+      -filter => { kittens => { '<', 10 } },
+  },
+
+is equivalent to the SQL
+
+  COUNT(1) FILTER ( WHERE kittens < 10 )
+
+=head2 -over
+
+This is used for window functions, e.g. the following adds a row number columns
+
+  '+select' => {
+      row_number => [],
+      -over => {
+         partition_by => 'class',
+         order_by     => 'score',
+      },
+  },
+
+which is equivalent to the SQL
+
+  ROW_NUMBER() OVER ( PARTITION BY class ORDER BY score )
+
+You can omit either the C<partition_by> or C<order_by> clauses.
 
 =head1 CAVEATS
 

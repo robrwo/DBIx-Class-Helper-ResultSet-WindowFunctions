@@ -1,6 +1,6 @@
 # NAME
 
-DBIx::Class::Helper::WindowFunctions - Add support for window functions to DBIx::Class
+DBIx::Class::Helper::WindowFunctions - Add support for window functions and aggregate filters to DBIx::Class
 
 # VERSION
 
@@ -41,8 +41,49 @@ my $rs = $schema->resultset('Wobbles')->search_rs(
 
 # DESCRIPTION
 
-This helper adds rudimentary support for window functions to
+This helper adds rudimentary support for window functions and aggregate filters to
 [DBIx::Class](https://metacpan.org/pod/DBIx%3A%3AClass) resultsets.
+
+It adds the following keys to the resultset attributes:
+
+## -filter
+
+This is used for filtering aggregate functions or window functions, e.g. the following clause
+
+```perl
+'+select' => {
+    count     => \ 1,
+    -filter => { kittens => { '<', 10 } },
+},
+```
+
+is equivalent to the SQL
+
+```
+COUNT(1) FILTER ( WHERE kittens < 10 )
+```
+
+## -over
+
+This is used for window functions, e.g. the following adds a row number columns
+
+```perl
+'+select' => {
+    row_number => [],
+    -over => {
+       partition_by => 'class',
+       order_by     => 'score',
+    },
+},
+```
+
+which is equivalent to the SQL
+
+```
+ROW_NUMBER() OVER ( PARTITION BY class ORDER BY score )
+```
+
+You can omit either the `partition_by` or `order_by` clauses.
 
 # CAVEATS
 

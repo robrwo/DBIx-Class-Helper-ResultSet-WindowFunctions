@@ -6,6 +6,9 @@ Revision history for {{$dist->name}}:
 
   - Add support for aggregate function filters without a window.
 
+  [Documentation]
+  - Updated documentation with more details.
+
 v0.5.0    2024-09-23 23:29:02+01:00 Europe/London
   [Incompatible Changes]
   - Removed deprecated DBIx::Class::Helper::ResultSet::WindowFunctions.
