@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}:
 
 {{$NEXT}}
+
+v0.6.0    2024-09-24 16:32:13+01:00 Europe/London
   [Enhancements]
   - Add support for filter clauses GH #1.
 
