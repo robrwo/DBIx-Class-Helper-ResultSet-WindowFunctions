@@ -51,19 +51,6 @@ L<DBIx::Class> resultsets.
 
 It adds the following keys to the resultset attributes:
 
-=head2 -filter
-
-This is used for filtering aggregate functions or window functions, e.g. the following clause
-
-  '+select' => {
-      count     => \ 1,
-      -filter => { kittens => { '<', 10 } },
-  },
-
-is equivalent to the SQL
-
-  COUNT(1) FILTER ( WHERE kittens < 10 )
-
 =head2 -over
 
 This is used for window functions, e.g. the following adds a row number columns
@@ -81,6 +68,36 @@ which is equivalent to the SQL
   ROW_NUMBER() OVER ( PARTITION BY class ORDER BY score )
 
 You can omit either the C<partition_by> or C<order_by> clauses.
+
+=head2 -filter
+
+This is used for filtering aggregate functions or window functions, e.g. the following clause
+
+  '+select' => {
+      count     => \ 1,
+      -filter => { kittens => { '<', 10 } },
+  },
+
+is equivalent to the SQL
+
+  COUNT(1) FILTER ( WHERE kittens < 10 )
+
+You can apply filters to window functions, e.g.
+
+  '+select' => {
+      row_number => [],
+      -filter => { class => { -like => 'A%' } },
+      -over => {
+         partition_by => 'class',
+         order_by     => 'score',
+      },
+  },
+
+which is equivalent to the SQL
+
+  ROW_NUMBER() FILTER ( WHERE class like 'A%' ) OVER ( PARTITION BY class ORDER BY score )
+
+The C<-filter> feature was added v0.6.0.
 
 =head1 CAVEATS
 

@@ -46,23 +46,6 @@ This helper adds rudimentary support for window functions and aggregate filters 
 
 It adds the following keys to the resultset attributes:
 
-## -filter
-
-This is used for filtering aggregate functions or window functions, e.g. the following clause
-
-```perl
-'+select' => {
-    count     => \ 1,
-    -filter => { kittens => { '<', 10 } },
-},
-```
-
-is equivalent to the SQL
-
-```
-COUNT(1) FILTER ( WHERE kittens < 10 )
-```
-
 ## -over
 
 This is used for window functions, e.g. the following adds a row number columns
@@ -84,6 +67,44 @@ ROW_NUMBER() OVER ( PARTITION BY class ORDER BY score )
 ```
 
 You can omit either the `partition_by` or `order_by` clauses.
+
+## -filter
+
+This is used for filtering aggregate functions or window functions, e.g. the following clause
+
+```perl
+'+select' => {
+    count     => \ 1,
+    -filter => { kittens => { '<', 10 } },
+},
+```
+
+is equivalent to the SQL
+
+```
+COUNT(1) FILTER ( WHERE kittens < 10 )
+```
+
+You can apply filters to window functions, e.g.
+
+```perl
+'+select' => {
+    row_number => [],
+    -filter => { class => { -like => 'A%' } },
+    -over => {
+       partition_by => 'class',
+       order_by     => 'score',
+    },
+},
+```
+
+which is equivalent to the SQL
+
+```
+ROW_NUMBER() FILTER ( WHERE class like 'A%' ) OVER ( PARTITION BY class ORDER BY score )
+```
+
+The `-filter` feature was added v0.6.0.
 
 # CAVEATS
 
