@@ -15,7 +15,7 @@ use namespace::clean;
 
 use experimental qw/ postderef signatures /;
 
-our $VERSION = 'v0.6.1';
+our $VERSION = 'v0.7.0';
 
 =head1 SYNOPSIS
 
@@ -191,13 +191,9 @@ sub _resolved_attrs ($rs) {
 
 =head1 SUPPORT FOR OLDER PERL VERSIONS
 
-Since v0.4.0, the this module requires Perl v5.14 or later.
+Since v0.7.0, the this module requires Perl v5.20 or later.
 
 Future releases may only support Perl versions released in the last ten years.
-
-If you need this module on Perl v5.10, please use one of the v0.3.x
-versions of this module.  Significant bug or security fixes may be
-backported to those versions.
 
 =head1 SEE ALSO
 
