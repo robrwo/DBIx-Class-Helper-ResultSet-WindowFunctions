@@ -2,7 +2,7 @@ package DBIx::Class::Helper::WindowFunctions;
 
 # ABSTRACT: Add support for window functions and aggregate filters to DBIx::Class
 
-use v5.14;
+use v5.20;
 use warnings;
 
 use parent 'DBIx::Class::ResultSet';
@@ -12,6 +12,8 @@ use Ref::Util qw/ is_plain_arrayref is_plain_hashref /;
 # RECOMMEND PREREQ: Ref::Util::XS
 
 use namespace::clean;
+
+use experimental qw/ postderef signatures /;
 
 our $VERSION = 'v0.6.1';
 
@@ -107,8 +109,7 @@ Not all databases support window functions.
 
 =cut
 
-sub _resolved_attrs {
-    my $rs    = $_[0];
+sub _resolved_attrs ($rs) {
     my $attrs = $rs->{attrs};
 
     my $sqla = $rs->result_source->storage->sql_maker;
@@ -118,7 +119,7 @@ sub _resolved_attrs {
         my $sel = $attrs->{$attr} or next;
         my @sel;
 
-        foreach my $col ( @{ is_plain_arrayref($sel) ? $sel : [$sel] } ) {
+        foreach my $col ( is_plain_arrayref($sel) ? $sel->@* : $sel ) {
 
             push @sel, $col;
 

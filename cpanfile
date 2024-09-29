@@ -3,9 +3,10 @@
 
 requires "DBIx::Class::ResultSet" => "0";
 requires "Ref::Util" => "0";
+requires "experimental" => "0";
 requires "namespace::clean" => "0";
 requires "parent" => "0";
-requires "perl" => "v5.14.0";
+requires "perl" => "v5.20.0";
 requires "warnings" => "0";
 recommends "Ref::Util::XS" => "0";
 

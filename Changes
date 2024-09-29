@@ -1,6 +1,12 @@
 Revision history for {{$dist->name}}:
 
 {{$NEXT}}
+  [Incompatible Changes]
+  - Bumped the minimum Perl to v5.20.
+
+  [Enhancements]
+  - The code uses newer Perl syntax features.
+
   [Toolchain]
   - Updated keywords in the distribution metadata.
 
