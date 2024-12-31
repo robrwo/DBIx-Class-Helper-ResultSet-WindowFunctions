@@ -7,6 +7,9 @@ Revision history for {{$dist->name}}:
   [Enhancements]
   - The code uses newer Perl syntax features.
 
+  [Documentation]
+  - Added security policy.
+
   [Toolchain]
   - Updated keywords in the distribution metadata.
 
