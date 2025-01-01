@@ -10,13 +10,18 @@ requires "perl" => "v5.20.0";
 requires "warnings" => "0";
 recommends "Ref::Util::XS" => "0";
 
+on 'build' => sub {
+  requires "ExtUtils::MakeMaker" => "7.22";
+  requires "Module::Metadata" => "1.000015";
+};
+
 on 'test' => sub {
   requires "Class::Load" => "0";
-  requires "DBD::SQLite" => "0";
+  requires "DBD::SQLite" => "1.70";
   requires "DBIx::Class::Core" => "0";
   requires "DBIx::Class::Schema" => "0";
   requires "File::Spec" => "0";
-  requires "Module::Metadata" => "0";
+  requires "Module::Metadata" => "1.000015";
   requires "SQL::Abstract" => "1.83";
   requires "SQL::Abstract::Test" => "0";
   requires "SQL::Translator" => "0.11018";
@@ -37,6 +42,7 @@ on 'configure' => sub {
 
 on 'develop' => sub {
   requires "Pod::Coverage::TrustPod" => "0";
+  requires "Test::CVE" => "0.08";
   requires "Test::CleanNamespaces" => "0.15";
   requires "Test::EOF" => "0";
   requires "Test::EOL" => "0";

@@ -10,6 +10,9 @@ Revision history for {{$dist->name}}:
   [Documentation]
   - Added security policy.
 
+  [Tests]
+  - Added more author tests.
+
   [Toolchain]
   - Updated keywords in the distribution metadata.
 
